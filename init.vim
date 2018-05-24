@@ -85,6 +85,9 @@ Plugin 'aclaimant/syntastic-joker'
 Plugin 'mhinz/vim-startify'
 Plugin 'VimClojure'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 " autocompleters
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'clojure-vim/async-clj-omni'
@@ -121,21 +124,6 @@ colorscheme alduin
 autocmd syntax * SpaceHi
 let g:spacehi_tabcolor="ctermfg=1 ctermbg=1  cterm=underline"
 let g:spacehi_tabcolor=g:spacehi_tabcolor . " guifg=red guibg=blue"
-
-" Mac OS X option-left / right
-"noremap â b
-"noremap æ e
-"inoremap â <C-o>b
-"inoremap æ <C-o>e<right>
-" Note - this required binding in preferences (Cmd-,) option+backspace to
-" escape+z.
-" Why this one is complicated - <C-o> at end of line moves cursor by one
-" character, which means a trailing character could be left.
-"inoremap <expr> ú col('.')>1 ? 'T<Left><C-o>db<Delete>' : '<Backspace>T<Left><c-o>db<Delete>'
-" Requires binding option+forward delete to escape
-"inoremap ø <C-o>dw
-"
-
 
 "-----------------------------------------------------
 " Deoplete for async word coomplete
@@ -280,4 +268,14 @@ autocmd FileType clj,clojure,cljs,cljx  let b:comment_leader = '; '
 autocmd FileType vim                    let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+
+"-----------------------------------------------------
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_powerline_fonts = 1
+let g:airline_symbols.space = "\ua0"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='badwolf'
 
