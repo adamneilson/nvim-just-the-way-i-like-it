@@ -102,6 +102,10 @@ Plugin 'clojure-vim/async-clj-omni'
 
 Plugin 'godlygeek/tabular'
 
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'sh.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -109,21 +113,10 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+
 " Put your non-Plugin stuff after this line
 "-----------------------------------------------------
 set wildchar=<TAB>
-
-" set default sql files to pgsql for the plugin formatting
-let g:sql_type_default = 'sql'
-
-
 
 "-----------------------------------------------------
 " Keep search matches in the middle of the window.
@@ -301,8 +294,7 @@ let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
 
-
-
+"-----------------------------------------------------
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
