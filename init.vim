@@ -4,21 +4,22 @@ filetype plugin indent on
 set autoindent
 set backspace=indent,eol,start
 set complete-=i
+set cursorline
 set smarttab
 set tabstop=4
 set shiftwidth=4
 set expandtab "http://vim.wikia.com/wiki/VimTip12
-"set encoding=utf-8
 set encoding=utf8
 set number
 set clipboard+=unnamedplus " use system clipboard
-"set list
-
-" https://github.com/boot-clj/boot/wiki/For-Vim-Users
+set list
+set hls
+set textwidth=100
 set backup
 set swapfile
 set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
+set shell=/bin/bash
 "set listchars=tab:▸\ ,eol:¬
 
 if has('nvim-0.1.5')        " True color in neovim wasn't added until 0.1.5
@@ -64,15 +65,12 @@ Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fireplace'
 Plugin 'clojure-vim/vim-cider'
-"Plugin 'clojure-vim/acid.nvim'
 Plugin 'guns/vim-clojure-static'
 Plugin 'snoe/clj-refactor.nvim'
 "Plugin 'SevereOverfl0w/clj-refactor.nvim'
 Plugin 'thirtythreeforty/lessspace.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'venantius/vim-cljfmt'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'junegunn/vim-easy-align'
 "Plugin 'lifepillar/pgsql.vim'
@@ -85,10 +83,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'aclaimant/syntastic-joker'
 Plugin 'mhinz/vim-startify'
 Plugin 'VimClojure'
-
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " autocompleters
@@ -117,6 +113,17 @@ set wildchar=<TAB>
 
 " set default sql files to pgsql for the plugin formatting
 let g:sql_type_default = 'sql'
+
+
+
+"-----------------------------------------------------
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+"-----------------------------------------------------
+"make space in normal mode add space
+nnoremap <Space> i<Space><Esc>l
 
 "-----------------------------------------------------
 "colorscheme murphy
