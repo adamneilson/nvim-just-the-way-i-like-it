@@ -8,8 +8,8 @@ set smarttab
 set tabstop=4
 set shiftwidth=4
 set expandtab "http://vim.wikia.com/wiki/VimTip12
-set encoding=utf-8
-"set encoding=utf8
+"set encoding=utf-8
+set encoding=utf8
 set number
 set clipboard+=unnamedplus " use system clipboard
 "set list
@@ -28,6 +28,7 @@ endif
 set runtimepath^=~/.vimclean runtimepath+=~/.vimclean/after
 let &packpath = &runtimepath
 "source ~/.vimrc
+
 
 
 
@@ -88,9 +89,13 @@ Plugin 'VimClojure'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 " autocompleters
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'clojure-vim/async-clj-omni'
+
+Plugin 'godlygeek/tabular'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -200,8 +205,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 let g:syntastic_clojure_checkers = ["joker"]
+" let g:syntastic_yaml_checkers = ["yamllint"]
+
 
 "-----------------------------------------------------
 " CtrlP (from https://kien.github.io/ctrlp.vim/)
