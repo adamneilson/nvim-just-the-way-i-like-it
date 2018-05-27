@@ -11,7 +11,7 @@ set shiftwidth=4
 set expandtab "http://vim.wikia.com/wiki/VimTip12
 set encoding=utf8
 set number
-set clipboard+=unnamedplus " use system clipboard
+"set clipboard+=unnamedplus " use system clipboard
 set list
 set hls
 set textwidth=100
@@ -22,6 +22,14 @@ set directory=~/.vim-tmp
 set shell=/bin/bash
 "set listchars=tab:▸\ ,eol:¬
 
+
+"macos vs linux clipboard
+if has("mac")
+  set clipboard+=unnamed
+else
+  set clipboard=unnamedplus
+endif
+
 if has('nvim-0.1.5')        " True color in neovim wasn't added until 0.1.5
     set termguicolors
 endif
@@ -29,8 +37,6 @@ endif
 set runtimepath^=~/.vimclean runtimepath+=~/.vimclean/after
 let &packpath = &runtimepath
 "source ~/.vimrc
-
-
 
 
 if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\(-.*\)\?$'
@@ -76,8 +82,6 @@ Plugin 'junegunn/vim-easy-align'
 "Plugin 'lifepillar/pgsql.vim'
 Plugin 'spacehi.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-
-"Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'aclaimant/syntastic-joker'
@@ -86,6 +90,11 @@ Plugin 'VimClojure'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'venantius/vim-cljfmt'
+
+" paired brackets
+Plugin 'jiangmiao/auto-pairs'
 
 " autocompleters
 Plugin 'Shougo/deoplete.nvim'
@@ -292,3 +301,9 @@ let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
 
+
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
