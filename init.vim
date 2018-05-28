@@ -70,6 +70,7 @@ Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fugitive'
 Plugin 'clojure-vim/vim-cider'
 Plugin 'guns/vim-clojure-static'
 Plugin 'snoe/clj-refactor.nvim'
@@ -101,6 +102,9 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'clojure-vim/async-clj-omni'
 
 Plugin 'godlygeek/tabular'
+Plugin 'vim-scripts/sql.vim--Stinson'
+Plugin 'ap/vim-css-color'
+Plugin 'wvffle/vimterm'
 
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'ekalinin/Dockerfile.vim'
@@ -127,13 +131,21 @@ nnoremap N Nzzzv
 "make space in normal mode add space
 nnoremap <Space> i<Space><Esc>l
 
+
+
+"-----------------------------------------------------
+nnoremap <F1> :call vimterm#toggle() <CR>
+
+"map § :call vimterm#toggle() <CR>
+
 "-----------------------------------------------------
 "colorscheme murphy
 "Replaces the Dark Red to Soft Red
 let g:alduin_Shout_Windhelm = 1
-colorscheme alduin
+"colorscheme alduin
 "let g:sierra_Sunset = 1
 "colorscheme sierra
+colors deus
 
 autocmd syntax * SpaceHi
 let g:spacehi_tabcolor="ctermfg=1 ctermbg=1  cterm=underline"
@@ -267,9 +279,14 @@ let g:startify_bookmarks = ['~/.config/nvim/init.vim', '~/Projects/', '~/Documen
 
 "-----------------------------------------------------
 " the gutter
-let &colorcolumn="100,".join(range(120,999),",")
-":hi ColorColumn guibg=#2d2d2d ctermbg=246
-:hi ColorColumn guibg=#000000 ctermbg=0
+if exists('+colorcolumn')
+   let &colorcolumn="100,".join(range(120,999),",")
+   ":hi ColorColumn guibg=#2d2d2d ctermbg=246
+   :hi ColorColumn guibg=#000000 ctermbg=246
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
 
 "-----------------------------------------------------
 " Commenting blocks of code.
@@ -299,3 +316,10 @@ let g:airline_theme='badwolf'
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1
+
+"-----------------------------------------------------
+"highlight Cursor guifg=white guibg=black
+"highlight iCursor guifg=white guibg=steelblue
+"set guicursor=n-v-c:block-Cursor
+"set guicursor+=i:ver100-iCursor
+"set guicursor+=n-v-c:blinkon0
