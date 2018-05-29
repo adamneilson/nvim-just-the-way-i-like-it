@@ -1,5 +1,3 @@
-syntax on
-filetype plugin indent on
 
 set autoindent
 set backspace=indent,eol,start
@@ -11,8 +9,7 @@ set shiftwidth=4
 set expandtab "http://vim.wikia.com/wiki/VimTip12
 set encoding=utf8
 set number
-"set clipboard+=unnamedplus " use system clipboard
-set list
+set clipboard+=unnamedplus " use system clipboard
 set hls
 set textwidth=100
 set backup
@@ -21,39 +18,41 @@ set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
 set shell=/bin/bash
 "set listchars=tab:▸\ ,eol:¬
+set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:•
+set list
 
 
 "macos vs linux clipboard
-if has("mac")
-  set clipboard+=unnamed
-else
-  set clipboard=unnamedplus
-endif
+"if has("mac")
+"  set clipboard+=unnamed
+"else
+"  set clipboard=unnamedplus
+"endif
 
-if has('nvim-0.1.5')        " True color in neovim wasn't added until 0.1.5
-    set termguicolors
-endif
+" if has('nvim-0.1.5')        " True color in neovim wasn't added until 0.1.5
+"     set termguicolors
+" endif
 
 set runtimepath^=~/.vimclean runtimepath+=~/.vimclean/after
 let &packpath = &runtimepath
 "source ~/.vimrc
 
 
-if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\(-.*\)\?$'
-    set notermguicolors
-elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\(-.*\)\?$'
-    set termguicolors
-elseif $TERM =~ '^\(xterm\)\(-.*\)\?$'
-    if $XTERM_VERSION != ''
-        set termguicolors
-    elseif $KONSOLE_PROFILE_NAME != ''
-     set termguicolors
-     elseif $VTE_VERSION != ''
-         set termguicolors
-     else
-         set notermguicolors
-     endif
- endif
+" if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\(-.*\)\?$'
+"     set notermguicolors
+" elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\(-.*\)\?$'
+"     set termguicolors
+" elseif $TERM =~ '^\(xterm\)\(-.*\)\?$'
+"     if $XTERM_VERSION != ''
+"         set termguicolors
+"     elseif $KONSOLE_PROFILE_NAME != ''
+"      set termguicolors
+"      elseif $VTE_VERSION != ''
+"          set termguicolors
+"      else
+"          set notermguicolors
+"      endif
+"  endif
 
 
 " set the runtime path to include Vundle and initialize
@@ -69,30 +68,32 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
-Plugin 'clojure-vim/vim-cider'
-Plugin 'guns/vim-clojure-static'
-Plugin 'snoe/clj-refactor.nvim'
-"Plugin 'SevereOverfl0w/clj-refactor.nvim'
 Plugin 'thirtythreeforty/lessspace.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'junegunn/vim-easy-align'
-"Plugin 'lifepillar/pgsql.vim'
 Plugin 'spacehi.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-Plugin 'aclaimant/syntastic-joker'
 Plugin 'mhinz/vim-startify'
-Plugin 'VimClojure'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'plasticboy/vim-markdown'
+
+" Clojure stuff
 Plugin 'venantius/vim-cljfmt'
+"Plugin 'VimClojure'
+Plugin 'guns/vim-clojure-static'
+"Plugin 'clojure-vim/vim-cider'
+"Plugin 'SevereOverfl0w/clj-refactor.nvim'
+Plugin 'snoe/clj-refactor.nvim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'aclaimant/syntastic-joker'
+
 
 " paired brackets
 Plugin 'jiangmiao/auto-pairs'
@@ -103,15 +104,19 @@ Plugin 'clojure-vim/async-clj-omni'
 
 Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/sql.vim--Stinson'
-Plugin 'ap/vim-css-color'
+"Plugin 'ap/vim-css-color'
+Plugin 'gko/vim-coloresque'
 Plugin 'wvffle/vimterm'
 
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'sh.vim'
+Plugin 'powerman/vim-plugin-autosess'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+
+syntax on
 filetype plugin indent on    " required
 
 " To ignore plugin indent changes, instead use:
@@ -323,3 +328,26 @@ let g:vim_markdown_json_frontmatter = 1
 "set guicursor=n-v-c:block-Cursor
 "set guicursor+=i:ver100-iCursor
 "set guicursor+=n-v-c:blinkon0
+
+"-----------------------------------------------------
+" Save and restore sessions
+fu! SaveSess()
+    execute 'mksession! /tmp/.session.vim'
+endfunction
+
+fu! RestoreSess()
+if filereadable('/tmp/.session.vim')
+    execute 'so /tmp/.session.vim'
+    if bufexists(1)
+        for l in range(1, bufnr('$'))
+            if bufwinnr(l) == -1
+                exec 'sbuffer ' . l
+            endif
+        endfor
+    endif
+endif
+endfunction
+
+"autocmd VimLeave * call SaveSess()
+"autocmd VimEnter * nested call RestoreSess()
+
