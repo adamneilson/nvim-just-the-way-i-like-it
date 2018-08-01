@@ -1,3 +1,5 @@
+syntax on
+filetype plugin indent on    " required
 
 set autoindent
 set backspace=indent,eol,start
@@ -85,10 +87,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'plasticboy/vim-markdown'
 
 " Clojure stuff
-Plugin 'venantius/vim-cljfmt'
-"Plugin 'VimClojure'
+"""Plugin 'venantius/vim-cljfmt'
+"Plugin 'michaelblume/vim-cljfmt'
+"""Plugin 'VimClojure'
 Plugin 'guns/vim-clojure-static'
-"Plugin 'clojure-vim/vim-cider'
+"""Plugin 'clojure-vim/vim-cider'
 "Plugin 'SevereOverfl0w/clj-refactor.nvim'
 Plugin 'snoe/clj-refactor.nvim'
 Plugin 'tpope/vim-fireplace'
@@ -96,7 +99,9 @@ Plugin 'aclaimant/syntastic-joker'
 
 
 " paired brackets
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'shaunlebron/parinfer'
+Plugin 'eraserhd/parinfer-rust'
 
 " autocompleters
 Plugin 'Shougo/deoplete.nvim'
@@ -110,14 +115,11 @@ Plugin 'wvffle/vimterm'
 
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'powerman/vim-plugin-autosess'
+"Plugin 'powerman/vim-plugin-autosess'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-
-syntax on
-filetype plugin indent on    " required
 
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
@@ -270,8 +272,8 @@ call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('clj', 'Magenta', 'none', '#ff00ff', '#151515')
-autocmd VimEnter * NERDTree | wincmd p
-nmap <silent> <C-1> :NERDTreeToggle<CR>
+"autocmd VimEnter * NERDTree | wincmd p
+"nmap <silent> <C-1> :NERDTreeToggle<CR>
 
 "-----------------------------------------------------
 " startify settings
@@ -351,3 +353,10 @@ endfunction
 "autocmd VimLeave * call SaveSess()
 "autocmd VimEnter * nested call RestoreSess()
 
+" Save session on quitting Vim
+autocmd VimLeave * NERDTreeClose
+"autocmd VimLeave * mksession! '/tmp/.session.vim'
+
+" Restore session on starting Vim
+"autocmd VimEnter * call RestoreSess()
+"autocmd VimEnter * NERDTree
