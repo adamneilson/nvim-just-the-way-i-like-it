@@ -24,37 +24,10 @@ set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:•
 set list
 
 
-"macos vs linux clipboard
-"if has("mac")
-"  set clipboard+=unnamed
-"else
-"  set clipboard=unnamedplus
-"endif
-
-" if has('nvim-0.1.5')        " True color in neovim wasn't added until 0.1.5
-"     set termguicolors
-" endif
 
 set runtimepath^=~/.vimclean runtimepath+=~/.vimclean/after
 let &packpath = &runtimepath
-"source ~/.vimrc
 
-
-" if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\(-.*\)\?$'
-"     set notermguicolors
-" elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\(-.*\)\?$'
-"     set termguicolors
-" elseif $TERM =~ '^\(xterm\)\(-.*\)\?$'
-"     if $XTERM_VERSION != ''
-"         set termguicolors
-"     elseif $KONSOLE_PROFILE_NAME != ''
-"      set termguicolors
-"      elseif $VTE_VERSION != ''
-"          set termguicolors
-"      else
-"          set notermguicolors
-"      endif
-"  endif
 
 
 " set the runtime path to include Vundle and initialize
@@ -139,10 +112,8 @@ nnoremap N Nzzzv
 nnoremap <Space> i<Space><Esc>l
 
 
-
 "-----------------------------------------------------
 nnoremap <F1> :call vimterm#toggle() <CR>
-
 "map § :call vimterm#toggle() <CR>
 
 "-----------------------------------------------------
